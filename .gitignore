@@ -13,3 +13,4 @@ test-results/
 /.allure-history/
 /playwright/.cache/
 /playwright/.auth/
+.auth/
