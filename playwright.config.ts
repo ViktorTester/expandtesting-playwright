@@ -110,7 +110,6 @@ export default defineConfig({
             name: 'setup',
             testMatch: /.*\.setup\.ts/,
         },
-
         {
             name: 'chromium-guest',
             testMatch: /.*\.guest\.spec\.ts/,
@@ -118,7 +117,6 @@ export default defineConfig({
                 ...devices['Desktop Chrome'],
             },
         },
-
         {
             name: 'chromium-auth',
             testMatch: /.*\.auth\.spec\.ts/,
@@ -128,7 +126,6 @@ export default defineConfig({
             },
             dependencies: ['setup'],
         },
-
         ...(process.env.CROSS_BROWSER === '1'
             ? [
                 {
