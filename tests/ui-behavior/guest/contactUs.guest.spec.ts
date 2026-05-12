@@ -1,6 +1,6 @@
 import {test} from '@fixtures/pages';
 import {testTexts} from "@testdata/Texts/testTexts";
-import {handleNextDialog} from "../helpers/dialog.helper";
+import {handleNextDialog} from "@helpers/dialog.helper";
 
 test.describe('"Contact Us" Page Tests', () => {
 
