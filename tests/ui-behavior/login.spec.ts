@@ -3,6 +3,8 @@ import {testUsers as user} from "@testdata/users/testUsers";
 
 test.describe('Login Lifecycle Tests', () => {
 
+    test.use({storageState: {cookies: [], origins: []}});
+
     test.beforeEach(async ({home}) => {
         await home.open();
         await home.assertLoaded();

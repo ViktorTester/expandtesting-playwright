@@ -132,6 +132,13 @@ When adding tests, keep the following structure goals:
 - Reusable actions and components live in `src/`.
 - Avoid `waitForTimeout`; use Playwright’s web-first assertions and stable locators.
 
+### State Management in Tests
+
+To handle authentication state within test files:
+
+- **For Authenticated tests**: Wrap tests in a `describe` block and use `test.use({ storageState: STORAGE_STATE_PATH })`.
+- **For Guest tests**: Wrap tests in a `describe` block and use `test.use({ storageState: { cookies: [], origins: [] } })` to ensure a clean session.
+
 Tagging:
 
 - Use `@smoke` for minimal checks that can run quickly.

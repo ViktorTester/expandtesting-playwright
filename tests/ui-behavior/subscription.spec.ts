@@ -1,6 +1,7 @@
 import {test} from '@fixtures/pages'
 
 test.describe('Subsription tests', () => {
+    test.use({storageState: {cookies: [], origins: []}});
     test.beforeEach(async ({home}) => {
         await home.open();
         await home.assertLoaded();
