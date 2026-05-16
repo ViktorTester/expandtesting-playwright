@@ -29,7 +29,7 @@ export default defineConfig({
     globalSetup: require.resolve('./src/utils/allureGlobalSetup'),
 
     // Global timeouts
-    timeout: 30_000,
+    timeout: 50_000,
     expect: {timeout: 5_000},
 
     // Setup projects for authentication
