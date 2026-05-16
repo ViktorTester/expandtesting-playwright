@@ -8,7 +8,6 @@ export class TestCasesPage {
 
 
     constructor(page: Page) {
-
         this.centerTitle = page.locator('b');
         this.footerTitle = page.getByRole('link', {name: 'Feedback for Us'});
         this.testCasesList = page.locator('.container > .panel-group');

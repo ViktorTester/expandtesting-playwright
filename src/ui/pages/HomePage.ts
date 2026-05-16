@@ -237,6 +237,7 @@ export class HomePage extends BasePage {
 
     async pressArrowUpScroll(): Promise<void> {
         await this.arrowScrollerBtn.click();
+        await this.consentModal.closePopupsIfPresent();
     }
 
 // Assertions
@@ -263,6 +264,7 @@ export class HomePage extends BasePage {
     }
 
     async scrollToFooter(): Promise<void> {
+        await this.consentModal.closePopupsIfPresent();
         await this.copyright.scrollIntoViewIfNeeded();
     }
 
@@ -283,8 +285,8 @@ export class HomePage extends BasePage {
         await expect(this.successSubscriptionAlert).toContainText(homeCopy.subsriptionSuccess);
     }
 
-    async checkModalText(option: string): Promise<void> {
-        if (option === 'visible') {
+    async checkModalText(state: 'visible' | 'hidden'): Promise<void> {
+        if (state === 'visible') {
             await expect(this.productAddedText).toBeVisible();
         } else {
             await expect(this.productAddedText).toBeHidden();
