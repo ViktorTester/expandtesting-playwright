@@ -1,7 +1,6 @@
 import {defineConfig, devices} from '@playwright/test';
 import {loadEnvConfig} from 'src/utils/envLoader';
 import {validateConfig} from 'src/utils/configValidator';
-import {STORAGE_STATE_PATH} from "@constants/paths";
 
 /**
  * Environment-driven configuration (2-dimensional):
@@ -100,8 +99,6 @@ export default defineConfig({
     /**
      * Test projects:
      * - setup: authenticates once and saves storage state
-     * - guest projects: run tests without authentication
-     * - auth projects: reuse saved authenticated session via storageState
      * - Chromium runs by default
      * - Firefox/WebKit run only when CROSS_BROWSER=1 (keeps CI fast)
      */
@@ -111,52 +108,28 @@ export default defineConfig({
             testMatch: /.*\.setup\.ts/,
         },
         {
-            name: 'chromium-guest',
-            testMatch: /.*\.guest\.spec\.ts/,
+            name: 'chromium',
+            testMatch: /.*\.spec\.ts/,
             use: {
                 ...devices['Desktop Chrome'],
-            },
-        },
-        {
-            name: 'chromium-auth',
-            testMatch: /.*\.auth\.spec\.ts/,
-            use: {
-                ...devices['Desktop Chrome'],
-                storageState: STORAGE_STATE_PATH,
             },
             dependencies: ['setup'],
         },
         ...(process.env.CROSS_BROWSER === '1'
             ? [
                 {
-                    name: 'firefox-guest',
-                    testMatch: /.*\.guest\.spec\.ts/,
+                    name: 'firefox',
+                    testMatch: /.*\.spec\.ts/,
                     use: {
                         ...devices['Desktop Firefox'],
-                    },
-                },
-                {
-                    name: 'firefox-auth',
-                    testMatch: /.*\.auth\.spec\.ts/,
-                    use: {
-                        ...devices['Desktop Firefox'],
-                        storageState: STORAGE_STATE_PATH,
                     },
                     dependencies: ['setup'],
                 },
                 {
-                    name: 'webkit-guest',
-                    testMatch: /.*\.guest\.spec\.ts/,
+                    name: 'webkit',
+                    testMatch: /.*\.spec\.ts/,
                     use: {
                         ...devices['Desktop Safari'],
-                    },
-                },
-                {
-                    name: 'webkit-auth',
-                    testMatch: /.*\.auth\.spec\.ts/,
-                    use: {
-                        ...devices['Desktop Safari'],
-                        storageState: STORAGE_STATE_PATH,
                     },
                     dependencies: ['setup'],
                 },

@@ -5,6 +5,8 @@ import {waitForDownload} from "@utils/download";
 
 test.describe("Account Lifecycle Tests", () => {
 
+    test.use({storageState: {cookies: [], origins: []}});
+
     test.beforeEach(async ({home}) => {
         await home.open();
         await home.assertLoaded();

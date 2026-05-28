@@ -4,6 +4,8 @@ import {handleNextDialog} from "@helpers/dialog.helper";
 
 test.describe('"Contact Us" Page Tests', () => {
 
+    test.use({storageState: {cookies: [], origins: []}});
+
     test.beforeEach(async ({home}) => {
         await home.open();
         await home.assertLoaded();

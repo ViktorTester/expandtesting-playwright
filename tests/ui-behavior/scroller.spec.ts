@@ -2,6 +2,8 @@ import {test} from "@fixtures/pages";
 
 test.describe('Page scroller scenarios', () => {
 
+    test.use({storageState: {cookies: [], origins: []}});
+
     test.beforeEach(async ({home}) => {
         await home.open();
         await home.assertLoaded();

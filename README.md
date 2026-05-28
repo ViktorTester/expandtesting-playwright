@@ -199,6 +199,18 @@ npm run test:brand2:staging
 
 ---
 
+## Authentication and State Management
+
+This project uses **Playwright Storage State** to manage user sessions:
+
+- **Global Setup**: The `tests/helpers/auth.setup.ts` performs login once and saves the authentication state to a file.
+- **Session Reuse**: Tests that require an authenticated session use `test.use({ storageState: STORAGE_STATE_PATH })` within a `test.describe` block.
+- **Session Isolation (Guest Mode)**: Tests that must run without authentication (as a Guest) explicitly clear the state using `test.use({ storageState: { cookies: [], origins: [] } })`.
+
+This allows combining guest and authenticated tests within the same file while maintaining strict state isolation.
+
+---
+
 ## Design rationale (testing perspective)
 
 The setup aligns with standard test-control and risk-reduction practices:
